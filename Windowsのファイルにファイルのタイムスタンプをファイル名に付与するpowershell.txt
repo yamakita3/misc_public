@@ -1,0 +1,14 @@
+#powershell
+#Windowsのファイルの更新日時に入っている日時をファイル名に付与したい。
+#日時の形式は20250823_10_22_05_のようにyyyymmdd_hh_mm_ss_として、ファイル名の冒頭にいれるようにして。
+#現在のディレクトリのファイルのみが対象になります
+#サブフォルダ内のファイルは含まれません
+#既にタイムスタンプが付いているファイル（日付で始まるファイル）はスキップされます
+#実行前にバックアップを取ることを強く推奨します
+powershell -Command "Get-ChildItem -File | ForEach-Object { `$timestamp = `$_.LastWriteTime.ToString('yyyyMMdd_HH_mm_ss_'); if (-not `$_.Name.StartsWith(`$timestamp.Substring(0,8))) { Rename-Item `$_.FullName -NewName (`$timestamp + `$_.Name) } }"
+#より明示的な書き方
+powershell -Command "Get-ChildItem '.\*' -File | ForEach-Object { $timestamp = $_.LastWriteTime.ToString('yyyyMMdd_HH_mm_ss_'); if (-not $_.Name.StartsWith($timestamp.Substring(0,8))) { Rename-Item $_.FullName -NewName ($timestamp + $_.Name) } }"
+#特定の拡張子のみ対象にする場合
+powershell -Command "Get-ChildItem '*.txt' -File | ForEach-Object { $timestamp = $_.LastWriteTime.ToString('yyyyMMdd_HH_mm_ss_'); if (-not $_.Name.StartsWith($timestamp.Substring(0,8))) { Rename-Item $_.FullName -NewName ($timestamp + $_.Name) } }"
+#デバッグ用（実際のリネームは行わず、結果を表示）
+powershell -Command "Get-ChildItem -File | ForEach-Object { $timestamp = $_.LastWriteTime.ToString('yyyyMMdd_HH_mm_ss_'); if (-not $_.Name.StartsWith($timestamp.Substring(0,8))) { Write-Host \"$($_.Name) -> $($timestamp + $_.Name)\" } }"
