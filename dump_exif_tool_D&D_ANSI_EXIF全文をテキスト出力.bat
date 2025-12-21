@@ -1,12 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo ==== exif_gps_simple.bat ŠJŽn ====
-echo ˆø”1 = "%~1"
+echo ==== exif_gps_simple.bat é–‹å§‹ ====
+echo å¼•æ•°1 = "%~1"
 echo.
 
 if "%~1"=="" (
-    echo ‰æ‘œƒtƒ@ƒCƒ‹‚ð‚±‚ÌBAT‚Éƒhƒ‰ƒbƒO&ƒhƒƒbƒv‚µ‚Ä‚­‚¾‚³‚¢B
+    echo ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã®BATã«ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã—ã¦ãã ã•ã„ã€‚
     pause
     exit /b
 )
@@ -16,22 +16,22 @@ set "OUTPUT_FILE=%~dpn1_exif.txt"
 set "OUTPUT_CSV=%~dpn1_exif_all.csv"
 set "EXIFTOOL=%~dp0exiftool.exe"
 
-echo “ü—Íƒtƒ@ƒCƒ‹ : "%INPUT_FILE%"
-echo o—Íƒtƒ@ƒCƒ‹ : "%OUTPUT_FILE%"
-echo o—ÍCSV     : "%OUTPUT_CSV%"
-echo Žg—pExifTool : "%EXIFTOOL%"
+echo å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ« : "%INPUT_FILE%"
+echo å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ« : "%OUTPUT_FILE%"
+echo å‡ºåŠ›CSV     : "%OUTPUT_CSV%"
+echo ä½¿ç”¨ExifTool : "%EXIFTOOL%"
 echo.
 
-REM ¥ EXIF‘S•¶‚ð‚»‚Ì‚Ü‚Üo—Í
+REM â–¼ EXIFå…¨æ–‡ã‚’ãã®ã¾ã¾å‡ºåŠ›
 "%EXIFTOOL%" "%INPUT_FILE%" > "%OUTPUT_FILE%"
 REM "%EXIFTOOL%" -all -csv -n -c "%.8f" "%INPUT_FILE%" > "%OUTPUT_CSV%"
-REM 2) GPS‚ð“xi­”j‚ÅCSVo—Í[web:97][web:102][web:111]
+REM 2) GPSã‚’åº¦ï¼ˆå°‘æ•°ï¼‰ã§CSVå‡ºåŠ›[web:97][web:102][web:111]
 "%EXIFTOOL%" -c "%.8f" -n -charset EXIF=UTF8 ^
   -GPSLatitude -GPSLongitude -FileName ^
   -csv "%INPUT_FILE%" > "%OUTPUT_CSV%"
 
-echo Š®—¹‚µ‚Ü‚µ‚½B
-echo o—Í: "%OUTPUT_FILE%"
+echo å®Œäº†ã—ã¾ã—ãŸã€‚
+echo å‡ºåŠ›: "%OUTPUT_FILE%"
 echo CSV: "%OUTPUT_CSV%"
 echo.
 pause
