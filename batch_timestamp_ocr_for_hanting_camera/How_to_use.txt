@@ -1,0 +1,6 @@
+# 依存インストール（初回のみ）
+sudo apt-get install tesseract-ocr
+pip install pillow pytesseract
+
+# 実行（画像のあるフォルダで）
+python batch_timestamp_ocr.py . -o ocr_results.txt
