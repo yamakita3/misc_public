@@ -1,0 +1,12 @@
+5つのキーワードファイル（.kwd）：ASCIIのみ・1行1キーワードの単語リスト（Shift_JIS / UTF-8両対応）「共通設定 → 強調キーワード → インポート」利用可。
+*as.character や read.table などドットを含む名前はサクラエディタの強調キーワードで単語区切りとして認識されないためドット入り名を除外。その分をタイプ別設定の「正規表現キーワード」（例： /\b[A-Za-z_][A-Za-z0-9_]*\.[A-Za-z0-9_.]+/k で as.*/na.omit/gam.check 等を一括ハイライト、/%\w+%/k でパイプ演算子）で補う設計。（タイプ別設定INIに含めた。）
+
+収録範囲: 予約語・定数のほか、base / stats / utils / graphics の主要関数、そして tidyverse 各パッケージ、data.table、jsonlite・xml2・httr2・httr・rvest・arrow・openxlsx・haven・janitor・DBI・qs・fst、さらにmgcv・lme4・emmeans・car・broom・performance・tidymodels・vegan・terra・raster・stars・sf・rnaturalearth を収録。
+
+| ファイル            | 想定セット名      | 主な内容                                                                          |
+| --------------- | ----------- | -------------------------------------------------------------------------------------- |
+| R_base.kwd      | R_base      | 予約語、base/stats/utils/graphics、確率分布関数(d/p/q/r系)                                                                  |
+| R_tidyverse.kwd | R_tidyverse | dplyr, tidyr, readr, tibble, stringr, purrr, forcats, lubridate, readxl                                         |
+| R_ggplot.kwd    | R_ggplot2   | ggplot2(色指定のcolor/colour両綴り含む), scales, patchwork, cowplot, ggrepel                                             |
+| R_data.kwd      | R_data      | data.table, jsonlite, xml2, httr2/httr, rvest, arrow, openxlsx, haven, janitor, DBI, qs/fst                     |
+| R_model_gis.kwd | R_model_gis | mgcv, lme4, glmmTMB, emmeans, car, broom, performance, tidymodels, vegan, terra/raster/stars, sf, rnaturalearth |
